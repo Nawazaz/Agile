@@ -15,7 +15,7 @@ class BackgroundApp(App):
         self.main_screen = MainScreen(name='main')
         self.signup_screen = SignUpScreen(name='signup')
         self.Signin_page = SecondScreen(name='second')
-        self.sm.add_widget(self.main_screen)
+        self.sm.add_widget(self.main_screen) 
         self.sm.add_widget(self.signup_screen)
         self.sm.add_widget(self.Signin_page)
         return self.sm
