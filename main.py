@@ -8,6 +8,11 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.popup import Popup
 from Signin_page import SecondScreen
+import sqlite3
+conn = sqlite3.connect('example.db')
+cursor = conn.cursor()
+cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT NOT NULL, password  TEXT NOT NULL, email  TEXT NOT NULL)''')
+conn.commit()
 
 class BackgroundApp(App):
     def build(self):
@@ -57,7 +62,7 @@ class MainScreen(Screen):
         self.Usr = TextInput(hint_text='Username', multiline=False, pos=(988, 610), size_hint=(None, None), size=(500, 50))
         self.Pswrd = TextInput(hint_text='Password', multiline=False, password=True, pos=(988, 550), size_hint=(None, None), size=(500, 50))
         self.Email = TextInput(hint_text='Email', multiline=False, input_type='text', pos=(988, 490), size_hint=(None, None), size=(500, 50))
-
+       
         Signup_Btn = Button(text='Sign up', size_hint=(None, None), size=(100, 50), pos=(1200, 400))
         Signup_Btn.bind(on_press=self.sign_up_action)
 
@@ -76,12 +81,21 @@ class MainScreen(Screen):
 
     def sign_up_action(self, instance):
         if self.Usr.text and self.Pswrd.text and self.Email.text:
+            conn = sqlite3.connect('example.db')
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO users (name, password, email) VALUES (?,?,?)", (self.Usr.text, self.Pswrd.text, self.Email.text))
+            conn.commit()
+            conn.close()
+ 
             popup = Popup(title='Registration Success',
                           content=Label(text="Thank you for registering, please sign in now"),
                           size_hint=(None, None), size=(400, 200))
             popup.open()
         else:
-            print("Please fill all the fields.")
+             popup = Popup(title='Sign up failed',
+                          content=Label(text="Please enter valid name,password or email"),
+                          size_hint=(None, None), size=(400, 200))
+             popup.open()
 
 class SignUpScreen(Screen):
     def __init__(self, **kwargs):
@@ -93,3 +107,5 @@ class SignUpScreen(Screen):
 
 if __name__ == "__main__":
     BackgroundApp().run()
+conn.commit()
+conn.close()
