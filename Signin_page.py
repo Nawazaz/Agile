@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.app import App
 import sqlite3
+import home_page
  
 class NewPage(Screen):
     pass
@@ -26,12 +27,16 @@ class SecondScreen(Screen):
  
         username_input = TextInput(hint_text='Username', multiline=False, size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.5, 'center_y': 0.6})
         password_input = TextInput(hint_text='Password', multiline=False, password=True, size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.5, 'center_y': 0.5})
-        login_button = Button(text='Login', size_hint=(None, None), size=(100, 50), pos_hint={'center_x': 0.5, 'center_y': 0.4})
+        login_button = Button(text='Login', size_hint=(None, None), size=(100, 50), pos_hint={'center_x': 0.5, 'center_y': 0.43})
         login_button.bind(on_press=self.login_action)
         layout.add_widget(username_input)
         layout.add_widget(password_input)
         layout.add_widget(login_button)
  
+        #return_button = Button(text='Return', size_hint=(None, None), size=(100, 50), pos_hint={'center_x': 0.5, 'center_y': 0.37})
+        #return_button.bind(on_press=self.return_to_main)
+        #layout.add_widget(return_button)
+
         self.add_widget(layout)
  
     def login_action(self, instance):
@@ -42,14 +47,19 @@ class SecondScreen(Screen):
         cursor.execute("SELECT * FROM users WHERE name = ? AND password = ?", (username, password))
         data = cursor.fetchone()  
         conn.close()
- 
+
         if data:
             print("Authentication successful. User:", username)
-            new_page = NewPage(name='new_page')
-            self.parent.add_widget(new_page)
-            self.parent.current = 'new_page'
+            # Assuming home_page.py defines a class named HomePage
+            home_screen = home_page.HomePage(name='home')
+            self.parent.add_widget(home_screen)
+            self.parent.current = 'home'
         else:
             print("Please enter valid Name or Password.")
+
+    #def return_to_main(self, instance):
+        # Switching back to the main page
+        #self.parent.current = 'main'
  
 class MyApp(App):
     def build(self):
