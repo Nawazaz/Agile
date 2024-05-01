@@ -4,6 +4,8 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
+import library
+import motivational
 
 class HomePage(Screen):
     def __init__(self, **kwargs):
@@ -40,7 +42,7 @@ class HomePage(Screen):
         
         # Add Library button
         library_button = Button(text='Library', size_hint=(None, None), size=(200, 50), font_size=18, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1))  # Transparent background
-        library_button.bind(on_press=self.open_library)
+        library_button.bind(on_press=self.go_to_library)
         library_layout.add_widget(library_button)
         
         layout.add_widget(library_layout)
@@ -54,19 +56,21 @@ class HomePage(Screen):
         
         # Add Motivational quotes button
         quotes_button = Button(text='Motivational\nquotes', size_hint=(None, None), size=(200, 50), font_size=18, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1))  # Transparent background
-        quotes_button.bind(on_press=self.open_motivational_quotes)
+        quotes_button.bind(on_press=self.go_to_motivational)
         quotes_layout.add_widget(quotes_button)
         
         layout.add_widget(quotes_layout)
         
         self.add_widget(layout)
+        
+    def go_to_library(self, instance):
+        # Switching to the library screen
+        library_screen = library.SecondScreen(name='library')
+        self.parent.add_widget(library_screen)
+        self.parent.current = 'library'
     
-    def open_library(self, instance):
-        # Open the Library screen
-        # You need to define the navigation to the library screen
-        pass
-    
-    def open_motivational_quotes(self, instance):
-        # Open the Motivational Quotes screen
-        # You need to define the navigation to the motivational quotes screen
-        pass
+    def go_to_motivational(self, instance):
+        # Switching to the motivational screen
+        motivational_screen = motivational.MotivationalScreen(name='motivational')
+        self.parent.add_widget(motivational_screen)
+        self.parent.current = 'motivational'
