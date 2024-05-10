@@ -16,18 +16,18 @@ class SecondScreen(Screen):
         super(SecondScreen, self).__init__(**kwargs)
         layout = FloatLayout()
  
-        background = Image(source='bg.jpg', allow_stretch=True, keep_ratio=False)
+        background = Image(source='Pic/bg.jpg', allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
  
-        wellness_bridge_label = Label(text='Wellness Bridge', pos_hint={'x': 0.01, 'top': 0.99}, size_hint=(None, None), size=(200, 50), font_name='Arial', italic=True, font_size=25)
+        wellness_bridge_label = Label(text='Wellness Bridge', pos_hint={'x': 0.04, 'top': 0.99}, size_hint=(None, None), size=(200, 50), font_name="fonts/BreeSerif-Regular.ttf", italic=True, font_size=40, color=(0.071, 0.078, 0.506, 1))
         layout.add_widget(wellness_bridge_label)
  
-        center_image = Image(source='left.jpg', allow_stretch=True, keep_ratio=False, size_hint=(None, None), size=(400, 400), pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        center_image = Image(source='Pic/left.jpg', allow_stretch=True, keep_ratio=False, size_hint=(None, None), size=(400, 400), pos_hint={'center_x': 0.5, 'center_y': 0.5})
         layout.add_widget(center_image)
  
         username_input = TextInput(hint_text='Username', multiline=False, size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.5, 'center_y': 0.6})
         password_input = TextInput(hint_text='Password', multiline=False, password=True, size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.5, 'center_y': 0.5})
-        login_button = Button(text='Login', size_hint=(None, None), size=(100, 50), pos_hint={'center_x': 0.5, 'center_y': 0.43})
+        login_button = Button(text='Login', size_hint=(None, None), size=(100, 50), pos_hint={'center_x': 0.5, 'center_y': 0.43}, font_name="fonts/BreeSerif-Regular.ttf")
         login_button.bind(on_press=self.login_action)
         layout.add_widget(username_input)
         layout.add_widget(password_input)

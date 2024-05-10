@@ -8,7 +8,7 @@ class SecondScreen(Screen):
         super(SecondScreen, self).__init__(**kwargs)
         
         layout = FloatLayout()
-        background = Image(source='homebg.png', allow_stretch=True, keep_ratio=False)
+        background = Image(source='Pic/bg.jpg', allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
         
         self.add_widget(layout)
