@@ -9,7 +9,7 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 import home_page
 import library
-import serial
+# import serial
 import time
 from kivy.clock import mainthread
 from kivy.graphics import Color, Rectangle
@@ -67,7 +67,7 @@ class MotivationalScreen(Screen):
         self.layout.add_widget(library_layout)
         self.layout.add_widget(Home_layout)
         self.add_widget(self.layout)
-        self.ser = serial.Serial('COM3', 9600)  # Change 'COM3' to your Arduino's serial port
+        # self.ser = serial.Serial('COM3', 9600)  # Change 'COM3' to your Arduino's serial port
         self.update_quotes()
         # Other initialization code...
         self.timer_label = Label(text=str(self.countdown), size_hint=(None, None), size=(50, 50), pos_hint={'right': 1, 'top': 1}, color=(0, 0, 0, 1))
@@ -93,10 +93,10 @@ class MotivationalScreen(Screen):
         # Schedule the next update after 60 seconds
         #Clock.schedule_once(self.update_quotes, 20)
 
-    def send_to_arduino(self, quote_text, quote_author):
-        message = f'"{quote_text}" - {quote_author}\n'
-        print("Sending to Arduino:", message)
-        self.ser.write(message.encode())
+    # def send_to_arduino(self, quote_text, quote_author):
+    #     message = f'"{quote_text}" - {quote_author}\n'
+    #     print("Sending to Arduino:", message)
+    #     self.ser.write(message.encode())
 
     def go_to_home(self, instance):
         # Switching to the home page screen
@@ -106,7 +106,7 @@ class MotivationalScreen(Screen):
     
     def go_to_library(self, instance):
         # Switching to the library page screen
-        library_screen = library.SecondScreen(name='library_page')
+        library_screen = library.LibraryScreen(name='library_page')
         self.parent.add_widget(library_screen)
         self.parent.current = 'library_page'
     def display_quote(self, quote_text, quote_author):

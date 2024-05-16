@@ -73,7 +73,7 @@ class HomePage(Screen):
         
     def go_to_library(self, instance):
         # Switching to the library screen
-        library_screen = library.SecondScreen(name='library')
+        library_screen = library.LibraryScreen(name='library')
         self.parent.add_widget(library_screen)
         self.parent.current = 'library'
     
