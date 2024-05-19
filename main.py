@@ -30,7 +30,7 @@ class MainScreen(Screen):
         super(MainScreen, self).__init__(**kwargs)
         layout = FloatLayout()
 
-        background = Image(source='bg.jpg', allow_stretch=True, keep_ratio=False)
+        background = Image(source='Pic/bg.jpg', allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
 
         App_txt = Label(text='Wellness Bridge', pos_hint={'x': 0.01, 'top': 0.99}, size_hint=(None, None), size=(200, 50), font_name='Arial', italic=True, font_size=25)
@@ -38,7 +38,7 @@ class MainScreen(Screen):
 
         images_layout = BoxLayout(pos_hint={'center_x': 0.5, 'center_y': 0.5}, size_hint=(None, None), size=(1112, 763))
         
-        Left_img = Image(source='left.jpg', size_hint=(None, None), size=(556, 763), allow_stretch=True, keep_ratio=False)
+        Left_img = Image(source='Pic/left.jpg', size_hint=(None, None), size=(556, 763), allow_stretch=True, keep_ratio=False)
         
         LeftImageText_1 = Label(text='Welcome Back!', pos=(430, 600), font_size=55, italic=True, color=(0, 0, 0, 1), size_hint=(None, None), size=(500, 50), halign='center')
 
@@ -56,7 +56,7 @@ class MainScreen(Screen):
 
         images_layout.add_widget(Left_img)
 
-        Right_img = Image(source='right.png', size_hint=(None, None), size=(556, 763), allow_stretch=True, keep_ratio=False)
+        Right_img = Image(source='Pic/right.png', size_hint=(None, None), size=(556, 763), allow_stretch=True, keep_ratio=False)
         
         create_account_label = Label(text='Create Account', pos=(1150, 700), font_size=25, color=(0, 0, 0, 1), size_hint=(None, None), size=(200, 50), halign='center')
         self.Usr = TextInput(hint_text='Username', multiline=False, pos=(988, 610), size_hint=(None, None), size=(500, 50))

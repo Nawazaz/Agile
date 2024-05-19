@@ -9,13 +9,18 @@ import motivational
 import podcast
 from kivy.uix.image import AsyncImage
 from kivy.uix.button import Button
+from kivy.uix.popup import Popup
+from kivy.uix.textinput import TextInput
+from kivy.graphics import Color, Rectangle
+
 
 class HomePage(Screen):
     def __init__(self, **kwargs):
         super(HomePage, self).__init__(**kwargs)
         
-        layout = FloatLayout()
         
+        layout = FloatLayout()
+
         # Add background image
         background = Image(source='Pic/homeimg.png', allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
@@ -82,6 +87,7 @@ class HomePage(Screen):
         layout.add_widget(logout_button)
         
         self.add_widget(layout)
+        
 
         
     def go_to_library(self, instance):

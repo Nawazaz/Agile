@@ -16,13 +16,13 @@ class SecondScreen(Screen):
         super(SecondScreen, self).__init__(**kwargs)
         layout = FloatLayout()
  
-        background = Image(source='bg.jpg', allow_stretch=True, keep_ratio=False)
+        background = Image(source='Pic/bg.jpg', allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
  
         wellness_bridge_label = Label(text='Wellness Bridge', pos_hint={'x': 0.01, 'top': 0.99}, size_hint=(None, None), size=(200, 50), font_name='Arial', italic=True, font_size=25)
         layout.add_widget(wellness_bridge_label)
  
-        center_image = Image(source='left.jpg', allow_stretch=True, keep_ratio=False, size_hint=(None, None), size=(400, 400), pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        center_image = Image(source='Pic/left.jpg', allow_stretch=True, keep_ratio=False, size_hint=(None, None), size=(400, 400), pos_hint={'center_x': 0.5, 'center_y': 0.5})
         layout.add_widget(center_image)
  
         username_input = TextInput(hint_text='Username', multiline=False, size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.5, 'center_y': 0.6})
