@@ -99,8 +99,8 @@ class LibraryScreen(Screen):
         # Define a dictionary mapping book covers to their corresponding PDF URLs
         book_cover_to_pdf = {
             'https://m.media-amazon.com/images/I/718A6RecZKL._SY522_.jpg': 'http://www.mentalhealthpromotion.net/resources/understanding-mental-illnesses.pdf',
-            'https://m.media-amazon.com/images/I/41o9P29YcqL._SY445_SX342_.jpg': 'file:///C:/Users/SAKH0032/Desktop/What%20Happened%20to%20You_%20-%20Oprah%20Winfrey.pdf',
-            'https://m.media-amazon.com/images/I/41nrmlG5N8L._SY445_SX342_.jpg': "file:///C:/Users/SAKH0032/Desktop/It%20Didn't%20Start%20With%20You.pdf",
+            'https://m.media-amazon.com/images/I/41o9P29YcqL._SY445_SX342_.jpg': 'Books/What Happened to You_ - Oprah Winfrey.pdf',
+            'https://m.media-amazon.com/images/I/41nrmlG5N8L._SY445_SX342_.jpg': "Books/It Didn't Start With You.pdf",
             'https://m.media-amazon.com/images/I/51SPsmOpFDL._SY445_SX342_.jpg': 'https://cdn.bookey.app/files/pdf/book/en/stop-overthinking.pdf',
             'https://m.media-amazon.com/images/I/51vlZnkzi9L._SY445_SX342_.jpg': 'https://books.yappe.in/pdf/65b5e0fff68f2195c01ac685.pdf',
             'https://m.media-amazon.com/images/I/81HV21Pq+cL._SY522_.jpg': 'https://static.fnac-static.com/multimedia/PT/pdf/9781785043635.pdf'

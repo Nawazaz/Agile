@@ -30,7 +30,7 @@ class MainScreen(Screen):
         super(MainScreen, self).__init__(**kwargs)
         layout = FloatLayout()
 
-        background = Image(source='Pic/homebg.png', allow_stretch=True, keep_ratio=False)
+        background = Image(source='Pic/antoine-rault-IhWRrZx4-kk-unsplash.jpg', allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
 
         App_txt = Label(text='Wellness Bridge', pos_hint={'x': 0.04, 'top': 0.99}, size_hint=(None, None), size=(200, 50), font_name="fonts/BreeSerif-Regular.ttf", italic=True, font_size=40, color=(0.071, 0.078, 0.506, 1))
