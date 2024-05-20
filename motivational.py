@@ -9,7 +9,7 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 import home_page
 import library
-import serial
+#import serial
 import time
 from kivy.clock import mainthread
 from kivy.graphics import Color, Rectangle
@@ -67,7 +67,7 @@ class MotivationalScreen(Screen):
         self.layout.add_widget(library_layout)
         self.layout.add_widget(Home_layout)
         self.add_widget(self.layout)
-        self.ser = serial.Serial('COM3', 9600)  # Change 'COM3' to your Arduino's serial port
+        #self.ser = serial.Serial('COM3', 9600)  # Change 'COM3' to your Arduino's serial port
         self.update_quotes()
         # Other initialization code...
         self.timer_label = Label(text=str(self.countdown), size_hint=(None, None), size=(50, 50), pos_hint={'right': 1, 'top': 1}, color=(0, 0, 0, 1))

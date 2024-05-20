@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 import library
 import motivational
+import reminders
 from kivy.uix.image import AsyncImage
 from kivy.uix.button import Button
 
@@ -62,6 +63,17 @@ class HomePage(Screen):
         quotes_layout.add_widget(quotes_button)
         
         layout.add_widget(quotes_layout)
+
+       
+        # Create a BoxLayout for reminders
+        reminders_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.71 , 'top': 0.97})
+        
+        # Add reminders button
+        reminders_button = Button(text='Reminders', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1), font_name="fonts/BreeSerif-Regular.ttf")
+        reminders_button.bind(on_press=self.go_to_reminders)
+        reminders_layout.add_widget(reminders_button)
+        
+        layout.add_widget(reminders_layout)
         
         # Add logout button
         logout_button = Button(text='Logout', size_hint=(None, None), size=(100, 50), pos_hint={'right': 0.95, 'top': 0.97}, font_size=18, background_color=(1, 0.5, 0, 1), font_name="fonts/BreeSerif-Regular.ttf")
@@ -82,6 +94,12 @@ class HomePage(Screen):
         motivational_screen = motivational.MotivationalScreen(name='motivational')
         self.parent.add_widget(motivational_screen)
         self.parent.current = 'motivational'
+
+    def go_to_reminders(self, instance):
+        # Switching to the reminders screen
+        reminders_screen = reminders.RemindersScreen(name='reminders')
+        self.parent.add_widget(reminders_screen)
+        self.parent.current = 'reminders'
     
     def logout(self, instance):
         # Switching back to the main screen
