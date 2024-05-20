@@ -37,7 +37,7 @@ class HomePage(Screen):
         self.layout.add_widget(wellness_label)
 
         # Add description text below Wellness Bridge
-        description_text = Label(text='Wellness Bridge is a revolutionary app designed to\n empower individuals with mental/chronic illnesses\n by providing a supportive community platform\n and comprehensive resources for holistic\n well being.',
+        description_text = Label(text='Wellness Bridge is a revolutionary app designed to\n empower individuals with mental health issues\n by providing a supportive community platform\n and comprehensive resources for holistic\n well being.',
                                 size_hint=(None, None), size=(800, 100), 
                                 pos_hint={'right': 1, 'top': 0.3}, 
                                 font_size=24, color=(0, 0, 0, 1),  # Black color
