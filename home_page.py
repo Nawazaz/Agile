@@ -12,6 +12,13 @@ import podcast
 import sqlite3
 from datetime import datetime
 import matplotlib.pyplot as plt
+import podcast
+from kivy.uix.image import AsyncImage
+from kivy.uix.button import Button
+from kivy.uix.popup import Popup
+from kivy.uix.textinput import TextInput
+from kivy.graphics import Color, Rectangle
+
 
 class HomePage(Screen):
     def __init__(self, acc_name='', **kwargs):
@@ -230,7 +237,6 @@ class HomePage(Screen):
         # Switching to the motivational screen
         motivational_screen = motivational.MotivationalScreen(name='motivational')
         self.parent.add_widget(motivational_screen)
-        self.parent.current = 'motivational'
     
     def logout(self, instance):
         # Switching back to the main screen
