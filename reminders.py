@@ -4,14 +4,60 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.togglebutton import ToggleButton
+from kivy.uix.popup import Popup
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.spinner import Spinner
+from kivy.clock import Clock
+from kivy.core.audio import SoundLoader
+import time
 import library
 import motivational
 import home_page
- 
+
+
+class TimePickerPopup(Popup):
+    def __init__(self, **kwargs):
+        super(TimePickerPopup, self).__init__(**kwargs)
+        self.title = 'Set Alarm Time'
+        self.title_align = 'center'  # Align title to the center
+        self.size_hint = (None, None)
+        self.size = (400, 300)
+        self.background_color = (0, 0, 0, 0)  # Set transparent background color
+        
+        layout = GridLayout(cols=2, padding=10, spacing=10)
+        
+        layout.add_widget(Label(text='Hour:', color=(1, 1, 1, 1)))
+        self.hour_spinner = Spinner(text='00', values=[f'{i:02}' for i in range(24)])
+        layout.add_widget(self.hour_spinner)
+        
+        layout.add_widget(Label(text='Minute:', color=(1, 1, 1, 1)))
+        self.minute_spinner = Spinner(text='00', values=[f'{i:02}' for i in range(60)])
+        layout.add_widget(self.minute_spinner)
+        
+        set_button = Button(text='Set', size_hint_y=None, height=44, background_color=(135/255, 206/255, 250/255, 1))
+        set_button.bind(on_press=self.set_time)
+        layout.add_widget(set_button)
+        
+        self.add_widget(layout)
+    
+    def set_time(self, instance):
+        hour = self.hour_spinner.text
+        minute = self.minute_spinner.text
+        self.dismiss()
+        self.on_time_set(hour, minute)    
+    
+    def on_time_set(self, hour, minute):
+        pass  # Override this method to handle the selected time
+
+
 class RemindersScreen(Screen):
     def __init__(self, **kwargs):
         super(RemindersScreen, self).__init__(**kwargs)
- 
+
+        self.alarm_time_label = Label(text='', size_hint=(None, None), size=(300, 50), pos_hint={'x': 0.5, 'top': 0.8}, font_size = 40, color=(0, 0, 0, 1), font_name="fonts/BreeSerif-Regular.ttf")
+        self.update_alarm_time_label()  # Update label text initially
+
         layout = FloatLayout()
  
         # Add background image
@@ -63,6 +109,35 @@ class RemindersScreen(Screen):
         layout.add_widget(logout_button)
  
         self.add_widget(layout)
+
+
+        # Add text "Daily Quote Reminder" at the left top
+        dailyQuote_label = Label(text='Daily Quote Reminder', size_hint=(None, None), size=(500, 45), pos_hint={'x': 0.3, 'top': 0.9}, font_size=30, color=(0.4, 0.4, 0.4, 1), font_name="fonts/BreeSerif-Regular.ttf")
+        layout.add_widget(dailyQuote_label)
+
+
+        # Create the toggle button for the quote reminder
+        #quote_toggle_button = ToggleButton(
+        #text='',
+        #ize_hint=(None, None),
+        #pos_hint={'right': 0.8, 'top': 0.8},  # Adjust position as needed
+        #background_normal='Pic/ToggleOff.png',  # Specify the path to the normal image
+        #background_down='Pic/ToggleOn.png'  # Specify the path to the down image
+        #)
+        #layout.add_widget(quote_toggle_button)
+
+        # Add Set Alarm Time button
+        set_alarm_button = Button(text='Set Alarm Time', size_hint=(None, None), size=(300, 50), pos_hint={'x': 0.3, 'top': 0.8}, font_size=23, background_color=(0.5, 0.5, 0.5, 0.5), color=(1, 1, 1, 1), font_name="fonts/BreeSerif-Regular.ttf")
+        set_alarm_button.bind(on_press=self.open_time_picker)
+        layout.add_widget(set_alarm_button)
+
+        layout.add_widget(self.alarm_time_label)  # Add alarm time label
+        
+        #self.add_widget(layout)
+        
+        # Schedule the alarm check
+        Clock.schedule_interval(self.check_alarm, 60)  # Check every minute
+
  
     def go_to_home(self, instance):
         # Switching to the home page screen
@@ -78,4 +153,46 @@ class RemindersScreen(Screen):
  
     def logout(self, instance):
         # Switching back to the main screen
-        self.parent.current = 'main'
+        self.parent.current = 'main'   
+
+    def open_time_picker(self, instance):
+        time_picker = TimePickerPopup()
+        time_picker.on_time_set = self.set_alarm_time
+        time_picker.open()
+
+    def update_alarm_time_label(self):
+        try:
+            with open('alarm_time.txt', 'r') as f:
+                alarm_time = f.read().strip()
+            self.alarm_time_label.text = alarm_time
+        except FileNotFoundError:
+            self.alarm_time_label.text = 'Alarm not set'
+
+    def set_alarm_time(self, hour, minute):
+        # Save the alarm time
+        alarm_time = f'{hour}:{minute}'
+        with open('alarm_time.txt', 'w') as f:
+            f.write(alarm_time)
+        print(f'Alarm set for {alarm_time}')
+        self.update_alarm_time_label()  # Update the alarm time label when it's set
+
+    def check_alarm(self, dt):
+        try:
+            with open('alarm_time.txt', 'r') as f:
+                alarm_time = f.read().strip()
+            current_time = time.strftime('%H:%M')
+            if current_time == alarm_time:
+                self.show_daily_quote()
+        except FileNotFoundError:
+            pass
+
+    def show_daily_quote(self):
+        # Play alarm sound
+        sound = SoundLoader.load('Pic/simple-notification-sound.mp3')
+        if sound:
+            sound.play()
+        
+        # Show popup with daily quote
+        quote = "It's time to dive into the motivational quotes!"
+        popup = Popup(title='Quote Reminder', content=Label(text=quote), size_hint=(None, None), size=(len(quote) * 10, len(quote) * 5), title_align='center')
+        popup.open()
