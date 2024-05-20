@@ -1,4 +1,5 @@
 import requests
+import requests
 from kivy.uix.screenmanager import Screen
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
@@ -18,19 +19,28 @@ from kivy.properties import NumericProperty
 class MotivationalScreen(Screen):
     countdown = NumericProperty(20)  # Initial countdown value
 
+    countdown = NumericProperty(20)  # Initial countdown value
+
     def __init__(self, **kwargs):
         super(MotivationalScreen, self).__init__(**kwargs)
         
         self.layout = FloatLayout()
+        self.layout = FloatLayout()
         
         # Add background image
+        background = Image(source='Pic/homebg.png', allow_stretch=True, keep_ratio=False)
+        self.layout.add_widget(background)
         background = Image(source='Pic/homebg.png', allow_stretch=True, keep_ratio=False)
         self.layout.add_widget(background)
 
         # Add text "Motivational Quotes" at the top center
         motivational_label = Label(text='Motivational Quotes', size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.5, 'top': 1}, font_size=30, color=(0, 0, 0, 1), font_name="fonts/BreeSerif-Regular.ttf")
         self.layout.add_widget(motivational_label)
+        motivational_label = Label(text='Motivational Quotes', size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.5, 'top': 1}, font_size=30, color=(0, 0, 0, 1), font_name="fonts/BreeSerif-Regular.ttf")
+        self.layout.add_widget(motivational_label)
 
+        left_image = Image(source='Pic/homeimg.png', size_hint=(None, None), size=(400, 1080), pos_hint={'left': 1})
+        self.layout.add_widget(left_image)
         left_image = Image(source='Pic/homeimg.png', size_hint=(None, None), size=(400, 1080), pos_hint={'left': 1})
         self.layout.add_widget(left_image)
 

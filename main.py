@@ -30,23 +30,23 @@ class MainScreen(Screen):
         super(MainScreen, self).__init__(**kwargs)
         layout = FloatLayout()
 
-        background = Image(source='Pic/bg.jpg', allow_stretch=True, keep_ratio=False)
+        background = Image(source='Pic/homebg.png', allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
 
-        App_txt = Label(text='Wellness Bridge', pos_hint={'x': 0.01, 'top': 0.99}, size_hint=(None, None), size=(200, 50), font_name='Arial', italic=True, font_size=25)
+        App_txt = Label(text='Wellness Bridge', pos_hint={'x': 0.04, 'top': 0.99}, size_hint=(None, None), size=(200, 50), font_name="fonts/BreeSerif-Regular.ttf", italic=True, font_size=40, color=(0.071, 0.078, 0.506, 1))
         layout.add_widget(App_txt)
 
-        images_layout = BoxLayout(pos_hint={'center_x': 0.5, 'center_y': 0.5}, size_hint=(None, None), size=(1112, 763))
+        images_layout = BoxLayout(pos_hint={'center_x': 0.515, 'center_y': 0.64}, size_hint=(None, None), size=(1112, 763))
         
-        Left_img = Image(source='Pic/left.jpg', size_hint=(None, None), size=(556, 763), allow_stretch=True, keep_ratio=False)
+        Left_img = Image(source='Pic/left.jpg', size_hint=(None, None), size=(500, 500), allow_stretch=True, keep_ratio=False)
         
-        LeftImageText_1 = Label(text='Welcome Back!', pos=(430, 600), font_size=55, italic=True, color=(0, 0, 0, 1), size_hint=(None, None), size=(500, 50), halign='center')
+        LeftImageText_1 = Label(text='Welcome Back!', pos=(430, 600), font_size=55, italic=True, color=(0, 0, 0, 1), size_hint=(None, None), size=(500, 50), halign='center', font_name="fonts/SedanSC-Regular.ttf")
 
-        LeftImageText_2 = Label(text='To keep connected with us', pos=(425, 520), font_size=30, color=(1, 1, 1, 1), size_hint=(None, None), size=(500, 45), halign='center')
+        LeftImageText_2 = Label(text='To keep connected with us', pos=(425, 520), font_size=30, color=(0, 0, 0, 1), size_hint=(None, None), size=(500, 45), halign='center', font_name= "fonts/Pacifico-Regular.ttf")
 
-        LeftImageText_3 = Label(text='please login with your personal info', pos=(430, 488), font_size=30, color=(1, 1, 1, 1), size_hint=(None, None), size=(500, 45), halign='center')
+        LeftImageText_3 = Label(text='please login with your personal info', pos=(430, 488), font_size=30, color=(0, 0, 0, 1), size_hint=(None, None), size=(500, 45), halign='center', font_name= "fonts/Pacifico-Regular.ttf")
 
-        Signin_Btn = Button(text='Sign in', size_hint=(None, None), size=(100, 50), pos=(625, 400))
+        Signin_Btn = Button(text='Sign in', size_hint=(None, None), size=(100, 50), pos=(625, 400), font_name="fonts/BreeSerif-Regular.ttf")
         Signin_Btn.bind(on_press=self.switch_to_another_page)
 
         Left_img.add_widget(LeftImageText_1)
@@ -56,14 +56,14 @@ class MainScreen(Screen):
 
         images_layout.add_widget(Left_img)
 
-        Right_img = Image(source='Pic/right.png', size_hint=(None, None), size=(556, 763), allow_stretch=True, keep_ratio=False)
+        Right_img = Image(source='Pic/right.png', size_hint=(None, None), size=(500, 500), allow_stretch=True, keep_ratio=False)
         
-        create_account_label = Label(text='Create Account', pos=(1150, 700), font_size=25, color=(0, 0, 0, 1), size_hint=(None, None), size=(200, 50), halign='center')
-        self.Usr = TextInput(hint_text='Username', multiline=False, pos=(988, 610), size_hint=(None, None), size=(500, 50))
-        self.Pswrd = TextInput(hint_text='Password', multiline=False, password=True, pos=(988, 550), size_hint=(None, None), size=(500, 50))
-        self.Email = TextInput(hint_text='Email', multiline=False, input_type='text', pos=(988, 490), size_hint=(None, None), size=(500, 50))
+        create_account_label = Label(text='Create Account', pos=(1050, 700), font_size=30, color=(0, 0, 0, 1), size_hint=(None, None), size=(250, 50), halign='center', font_name="fonts/SedanSC-Regular.ttf")
+        self.Usr = TextInput(hint_text='Username', multiline=False, pos=(1035, 610), size_hint=(None, None), size=(300, 50))
+        self.Pswrd = TextInput(hint_text='Password', multiline=False, password=True, pos=(1035, 550), size_hint=(None, None), size=(300, 50))
+        self.Email = TextInput(hint_text='Email', multiline=False, input_type='text', pos=(1035, 490), size_hint=(None, None), size=(300, 50))
        
-        Signup_Btn = Button(text='Sign up', size_hint=(None, None), size=(100, 50), pos=(1200, 400))
+        Signup_Btn = Button(text='Sign up', size_hint=(None, None), size=(100, 50), pos=(1125, 400), font_name="fonts/BreeSerif-Regular.ttf")
         Signup_Btn.bind(on_press=self.sign_up_action)
 
         Right_img.add_widget(create_account_label)

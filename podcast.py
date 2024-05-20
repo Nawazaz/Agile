@@ -80,7 +80,7 @@ class PodcastScreen(Screen):
         self.play_button1.bind(on_press=self.toggle_play_pause1)
         self.layout.add_widget(self.play_button1)
  
-        self.sound1 = SoundLoader.load('pod/12MM-_Jessica_Morey_6.16 1.mp3')
+        self.sound1 = SoundLoader.load('pod/12MM-_Jessica_Morey_6.16.mp3')
  
         # Add Slider for Podcast 1
         self.slider1 = Slider(min=0, max=1, value=0, size_hint=(None, None), size=(350, 50), pos_hint={'center_x': 0.35, 'center_y': 0.63})
@@ -98,7 +98,7 @@ class PodcastScreen(Screen):
         self.play_button2.bind(on_press=self.toggle_play_pause2)
         self.layout.add_widget(self.play_button2)
  
-        self.sound2 = SoundLoader.load('pod/TIN_-_Sensory_Diet_-_PODCAST8wwsn.mp3')
+        self.sound2 = SoundLoader.load('TIN_-_Sensory_Diet_-_PODCAST8wwsn.mp3')
  
         # Add Slider for Podcast 2
         self.slider2 = Slider(min=0, max=1, value=0, size_hint=(None, None), size=(350, 50), pos_hint={'center_x': 0.7, 'center_y': 0.63})
