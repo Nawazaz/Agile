@@ -9,12 +9,7 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 import home_page
 import library
-<<<<<<< HEAD
-#import serial
-import time
-=======
 # import serial
->>>>>>> 3662d563d4450d348ed73870f0164393a48a770d
 from kivy.clock import mainthread
 from kivy.graphics import Color, Rectangle
 from kivy.properties import NumericProperty
