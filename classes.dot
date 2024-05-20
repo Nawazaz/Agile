@@ -1,0 +1,7 @@
+digraph "classes" {
+rankdir=BT
+charset="utf-8"
+"Signin_page.MyApp" [color="black", fontcolor="black", label=<{MyApp|<br ALIGN="LEFT"/>|build()<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"Signin_page.NewPage" [color="black", fontcolor="black", label=<{NewPage|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"Signin_page.SecondScreen" [color="black", fontcolor="black", label=<{SecondScreen|<br ALIGN="LEFT"/>|login_action(instance)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+}

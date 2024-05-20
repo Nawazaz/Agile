@@ -1,0 +1,8 @@
+@startuml classes
+set namespaceSeparator none
+class "HomePage" as home_page.HomePage {
+  go_to_library(instance)
+  go_to_motivational(instance)
+  logout(instance)
+}
+@enduml

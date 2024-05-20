@@ -22,7 +22,6 @@ class TestMainScreen(GraphicUnitTest):
         self.main_screen.Pswrd.text = 'testpassword'
         self.main_screen.Email.text = 'test@example.com'
         self.main_screen.sign_up_action(None)
-        # Check if popup for successful registration is shown
         self.assertTrue(self.main_screen.children)
 
     def test_sign_up_action_invalid(self):
@@ -30,7 +29,6 @@ class TestMainScreen(GraphicUnitTest):
         self.main_screen.Pswrd.text = ''
         self.main_screen.Email.text = ''
         self.main_screen.sign_up_action(None)
-        # Check if popup for invalid registration is shown
         self.assertTrue(self.main_screen.children)
 
 class TestSignUpScreen(GraphicUnitTest):

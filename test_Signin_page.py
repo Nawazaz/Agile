@@ -20,14 +20,12 @@ class TestSecondScreen(GraphicUnitTest):
         self.second_screen.children[0].children[2].text = 'testuser'
         self.second_screen.children[0].children[1].text = 'testpassword'
         self.second_screen.login_action(None)
-        # Check if the current screen changes to 'home' after successful login
         self.assertEqual(self.screen_manager.current, 'home')
 
     def test_login_action_invalid_credentials(self):
         self.second_screen.children[0].children[2].text = 'invaliduser'
         self.second_screen.children[0].children[1].text = 'invalidpassword'
         self.second_screen.login_action(None)
-        # Check if the correct message is printed when login fails
         self.assertNotEqual(self.screen_manager.current, 'home')
 
 if __name__ == '__main__':
