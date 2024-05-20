@@ -10,7 +10,6 @@ from kivy.uix.boxlayout import BoxLayout
 import home_page
 import library
 # import serial
-import time
 from kivy.clock import mainthread
 from kivy.graphics import Color, Rectangle
 from kivy.properties import NumericProperty
@@ -177,7 +176,7 @@ class MotivationalScreen(Screen):
     def logout(self, instance):
         # Switching back to the main screen
         self.parent.current = 'main'
-
+    
 # Usage example
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
