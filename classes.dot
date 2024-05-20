@@ -1,9 +1,0 @@
-digraph "classes" {
-rankdir=BT
-charset="utf-8"
-"main.BackgroundApp" [color="black", fontcolor="black", label=<{BackgroundApp|Signin_page : SecondScreen<br ALIGN="LEFT"/>main_screen<br ALIGN="LEFT"/>signup_screen<br ALIGN="LEFT"/>sm : ScreenManager<br ALIGN="LEFT"/>|build()<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-"main.MainScreen" [color="black", fontcolor="black", label=<{MainScreen|Email : TextInput<br ALIGN="LEFT"/>Pswrd : TextInput<br ALIGN="LEFT"/>Usr : TextInput<br ALIGN="LEFT"/>|sign_up_action(instance)<br ALIGN="LEFT"/>switch_to_another_page(instance)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-"main.SignUpScreen" [color="black", fontcolor="black", label=<{SignUpScreen|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
-"main.MainScreen" -> "main.BackgroundApp" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="main_screen", style="solid"];
-"main.SignUpScreen" -> "main.BackgroundApp" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="signup_screen", style="solid"];
-}
