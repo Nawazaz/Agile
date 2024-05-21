@@ -7,6 +7,7 @@ from kivy.uix.textinput import TextInput
 from kivy.app import App
 import sqlite3
 import home_page
+import hashlib
 
 acc_name = ''
 
@@ -40,9 +41,12 @@ class SecondScreen(Screen):
     def login_action(self, instance):
         username = self.username_input.text
         password = self.password_input.text
+        
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        
         conn = sqlite3.connect('example.db')
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM users WHERE name = ? AND password = ?", (username, password))
+        cursor.execute("SELECT * FROM users WHERE name = ? AND password = ?", (username, hashed_password))
         data = cursor.fetchone()  
         conn.close()
 
@@ -50,7 +54,6 @@ class SecondScreen(Screen):
             print("Authentication successful. User:", username)
             acc_name = username
             print('in signin page', acc_name)
-            # Assuming home_page.py defines a class named HomePage
             home_screen = home_page.HomePage(name='home', acc_name=acc_name)
             self.parent.add_widget(home_screen)
             self.parent.current = 'home'

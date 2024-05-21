@@ -13,6 +13,8 @@ conn = sqlite3.connect('example.db')
 cursor = conn.cursor()
 cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT NOT NULL, password  TEXT NOT NULL, email  TEXT NOT NULL)''')
 conn.commit()
+import hashlib
+
 
 class BackgroundApp(App):
     def build(self):
@@ -81,21 +83,23 @@ class MainScreen(Screen):
 
     def sign_up_action(self, instance):
         if self.Usr.text and self.Pswrd.text and self.Email.text:
+            hashed_password = hashlib.sha256(self.Pswrd.text.encode()).hexdigest()
+            
             conn = sqlite3.connect('example.db')
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO users (name, password, email) VALUES (?,?,?)", (self.Usr.text, self.Pswrd.text, self.Email.text))
+            cursor.execute("INSERT INTO users (name, password, email) VALUES (?,?,?)", (self.Usr.text, hashed_password, self.Email.text))
             conn.commit()
             conn.close()
- 
+    
             popup = Popup(title='Registration Success',
-                          content=Label(text="Thank you for registering, please sign in now"),
-                          size_hint=(None, None), size=(400, 200))
+                        content=Label(text="Thank you for registering, please sign in now"),
+                        size_hint=(None, None), size=(400, 200))
             popup.open()
         else:
-             popup = Popup(title='Sign up failed',
-                          content=Label(text="Please enter valid name,password or email"),
-                          size_hint=(None, None), size=(400, 200))
-             popup.open()
+            popup = Popup(title='Sign up failed',
+                        content=Label(text="Please enter valid name, password, or email"),
+                        size_hint=(None, None), size=(400, 200))
+            popup.open()
 
 class SignUpScreen(Screen):
     def __init__(self, **kwargs):
