@@ -7,9 +7,10 @@ from kivy.uix.button import Button
 from kivy.core.audio import SoundLoader
 from kivy.app import App
 from kivy.clock import Clock
- 
+import motivational
 import home_page
 import library
+import reminders
 from kivy.uix.slider import Slider
 from kivy.uix.label import Label
 from kivy.properties import NumericProperty
@@ -65,7 +66,29 @@ class PodcastScreen(Screen):
         home_button = Button(text='Home', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1), font_name="fonts/SedanSC-Regular.ttf")
         home_button.bind(on_press=self.go_to_home)
         home_layout.add_widget(home_button)
- 
+
+        motivational_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'left': 1, 'top': 0.53})
+
+        # Add Motivational image
+        motivational_image = Image(source='Pic/graduationcap.png', size_hint=(None, None), size=(50, 50))
+        motivational_layout.add_widget(motivational_image)
+
+        # Add Motivational button
+        motivational_button = Button(text='Motivational \n Quotes', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1), font_name="fonts/SedanSC-Regular.ttf")  # Transparent background
+        motivational_button.bind(on_press=self.go_to_motivational)  # Bind the button to a method
+        motivational_layout.add_widget(motivational_button)
+
+        reminder_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'left': 1, 'top': 0.46})
+
+        # Add Motivational image
+        reminder_image = Image(source='Pic/graduationcap.png', size_hint=(None, None), size=(50, 50))
+        reminder_layout.add_widget(reminder_image)
+
+        # Add Motivational button
+        reminder_button = Button(text='Reminders', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1), font_name="fonts/SedanSC-Regular.ttf")  # Transparent background
+        reminder_button.bind(on_press=self.go_to_reminder)  # Bind the button to a method
+        reminder_layout.add_widget(reminder_button)
+
         # Add logout button
         logout_button = Button(text='Logout', size_hint=(None, None), size=(100, 50), pos_hint={'right': 0.95, 'top': 0.97}, font_size=18, background_color=(1, 0.5, 0, 1), font_name="fonts/BreeSerif-Regular.ttf")
         logout_button.bind(on_press=self.logout)
@@ -145,6 +168,8 @@ class PodcastScreen(Screen):
  
         self.layout.add_widget(library_layout)
         self.layout.add_widget(home_layout)
+        self.layout.add_widget(motivational_layout)
+        self.layout.add_widget(reminder_layout)
         self.add_widget(self.layout)
  
     def toggle_play_pause1(self, instance):
@@ -219,7 +244,16 @@ class PodcastScreen(Screen):
         library_screen = library.LibraryScreen(name='library_page')
         self.parent.add_widget(library_screen)
         self.parent.current = 'library_page'
- 
+    def go_to_motivational(self, instance):
+        # Switching to the library page screen
+        motivational_screen = motivational.MotivationalScreen(name='motivational_page')
+        self.parent.add_widget(motivational_screen)
+        self.parent.current = 'motivational_page'
+    def go_to_reminder(self, instance):
+        # Switching to the library page screen
+        reminder_screen = reminders.RemindersScreen(name='reminder_page')
+        self.parent.add_widget(reminder_screen)
+        self.parent.current = 'reminder_page'
     def logout(self, instance):
         self.parent.current = 'main'
  
