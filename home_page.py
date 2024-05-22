@@ -25,8 +25,8 @@ class HomePage(Screen):
         self.layout.add_widget(background)
         
         # Add text "Home" at the top center
-        home_label = Image(source='Pic/Logo.png', size_hint=(None, None), size=(300, 150), pos_hint={'left': 2, 'top': 1})  # Black color
-        self.layout.add_widget(home_label)
+        #home_label = Image(source='Pic/Logo.png', size_hint=(None, None), size=(300, 150), pos_hint={'left': 2, 'top': 1})  # Black color
+        #self.layout.add_widget(home_label)
         
         # Add "Wellness bridge" label on the left image
         wellness_label = Label(text='Wellness\n     Bridge', size_hint=(None, None), size=(300, 50), 
@@ -49,7 +49,7 @@ class HomePage(Screen):
 
         
         # Create a BoxLayout for Library
-        library_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.5, 'top': 0.97})
+        library_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.505, 'top': 0.97})
         
         # Add Library button
         library_button = Button(text='Library', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1), font_name="fonts/BreeSerif-Regular.ttf")  # Transparent background
@@ -76,14 +76,14 @@ class HomePage(Screen):
         reminders_button.bind(on_press=self.go_to_reminders)
         reminders_layout.add_widget(reminders_button)
        # Create a BoxLayout for podcast
-        podcast_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.42, 'top': 0.97})
+        podcast_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.44, 'top': 0.97})
        
         # Add Podcast button
         podcast_button = Button(text='Podcast', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1),font_name="fonts/BreeSerif-Regular.ttf")
         podcast_button.bind(on_press=self.go_to_podcast)
         podcast_layout.add_widget(podcast_button)
        
-        analytics_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.79, 'top': 0.97})
+        analytics_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'center_x': 0.37, 'top': 0.97})
 
         analytics_button = Button(text='Analytics', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1),font_name="fonts/BreeSerif-Regular.ttf")
         analytics_button.bind(on_press=self.show_graph)
