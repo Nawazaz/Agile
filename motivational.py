@@ -63,7 +63,7 @@ class MotivationalScreen(Screen):
         podcast_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'left': 1, 'top': 0.53})
 
         # Add Podcast image
-        podcast_image = Image(source='Pic/graduationcap.png', size_hint=(None, None), size=(50, 50))
+        podcast_image = Image(source='Pic/podcast.png', size_hint=(None, None), size=(50, 50))
         podcast_layout.add_widget(podcast_image)
         # Add Podcast button
         podcast_button = Button(text='Podcast', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1), font_name="fonts/SedanSC-Regular.ttf")  # Transparent background
@@ -74,7 +74,7 @@ class MotivationalScreen(Screen):
         reminder_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'left': 1, 'top': 0.46})
 
         # Add Motivational image
-        reminder_image = Image(source='Pic/graduationcap.png', size_hint=(None, None), size=(50, 50))
+        reminder_image = Image(source='Pic/reminder.png', size_hint=(None, None), size=(50, 50))
         reminder_layout.add_widget(reminder_image)
 
         # Add Motivational button

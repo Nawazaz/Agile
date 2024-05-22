@@ -10,6 +10,8 @@ from kivy.uix.boxlayout import BoxLayout
 import home_page
 import motivational
 import webbrowser
+import reminders
+import podcast
 from kivy.uix.behaviors import ButtonBehavior
  
 class BookButton(ButtonBehavior, AsyncImage):
@@ -62,7 +64,29 @@ class LibraryScreen(Screen):
         scrollview.add_widget(books_layout) # Add the books layout to the scroll view
        
         self.layout.add_widget(scrollview)
-       
+        
+        reminder_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'left': 1, 'top': 0.46})
+
+        # Add Motivational image
+        reminder_image = Image(source='Pic/reminder.png', size_hint=(None, None), size=(50, 50))
+        reminder_layout.add_widget(reminder_image)
+
+        # Add Motivational button
+        reminder_button = Button(text='Reminders', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1), font_name="fonts/SedanSC-Regular.ttf")  # Transparent background
+        reminder_button.bind(on_press=self.go_to_reminder)  # Bind the button to a method
+        reminder_layout.add_widget(reminder_button)
+
+        podcast_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'left': 1, 'top': 0.53})
+
+        # Add Podcast image
+        podcast_image = Image(source='Pic/podcast.png', size_hint=(None, None), size=(50, 50))
+        podcast_layout.add_widget(podcast_image)
+        # Add Podcast button
+        podcast_button = Button(text='Podcast', size_hint=(None, None), size=(200, 50), font_size=23, background_color=(0, 0, 0, 0), color=(0, 0, 0, 1), font_name="fonts/SedanSC-Regular.ttf")  # Transparent background
+        podcast_button.bind(on_press=self.go_to_podcast)  # Bind the button to a method
+        podcast_layout.add_widget(podcast_button)
+        self.layout.add_widget(podcast_layout)
+
         motivational_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'left': 1, 'top': 0.6})
        
         # Add Motivational Quotes image
@@ -85,6 +109,7 @@ class LibraryScreen(Screen):
         Home_button.bind(on_press=self.go_to_home)
         Home_layout.add_widget(Home_button)
        
+       
         # Add logout button
         logout_button = Button(text='Logout', size_hint=(None, None), size=(100, 50), pos_hint={'right': 0.95, 'top': 0.97}, font_size=18, background_color=(1, 0.5, 0, 1), font_name="fonts/BreeSerif-Regular.ttf")
         logout_button.bind(on_press=self.logout)
@@ -92,7 +117,8 @@ class LibraryScreen(Screen):
  
         self.layout.add_widget(motivational_layout)
         self.layout.add_widget(Home_layout)
-       
+        self.layout.add_widget(reminder_layout)
+
         self.add_widget(self.layout)
        
     def open_book(self, instance):
@@ -126,11 +152,20 @@ class LibraryScreen(Screen):
         motivational_screen = motivational.MotivationalScreen(name='motivational_page')
         self.parent.add_widget(motivational_screen)
         self.parent.current = 'motivational_page'
-   
+    
+    def go_to_reminder(self, instance):
+        # Switching to the library page screen
+        reminder_screen = reminders.RemindersScreen(name='reminder_page')
+        self.parent.add_widget(reminder_screen)
+        self.parent.current = 'reminder_page'
     def logout(self, instance):
         # Switching back to the main screen
         self.parent.current = 'main'
-   
+    def go_to_podcast(self, instance):
+        # Switching to the library page screen
+        podcast_screen = podcast.PodcastScreen(name='podcast_page')
+        self.parent.add_widget(podcast_screen)
+        self.parent.current = 'podcast_page'
     def get_book_title(self, url):
         # Define a dictionary mapping book covers to their corresponding titles
         book_titles = {

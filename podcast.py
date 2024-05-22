@@ -81,7 +81,7 @@ class PodcastScreen(Screen):
         reminder_layout = BoxLayout(orientation='horizontal', size_hint=(None, None), size=(300, 50), pos_hint={'left': 1, 'top': 0.46})
 
         # Add Motivational image
-        reminder_image = Image(source='Pic/graduationcap.png', size_hint=(None, None), size=(50, 50))
+        reminder_image = Image(source='Pic/reminder.png', size_hint=(None, None), size=(50, 50))
         reminder_layout.add_widget(reminder_image)
 
         # Add Motivational button
@@ -249,6 +249,7 @@ class PodcastScreen(Screen):
         motivational_screen = motivational.MotivationalScreen(name='motivational_page')
         self.parent.add_widget(motivational_screen)
         self.parent.current = 'motivational_page'
+    
     def go_to_reminder(self, instance):
         # Switching to the library page screen
         reminder_screen = reminders.RemindersScreen(name='reminder_page')

@@ -98,6 +98,9 @@ class HomePage(Screen):
         logout_button.bind(on_press=self.logout)
         self.layout.add_widget(logout_button)
         
+        username_label = Label(text=f'{self.acc_name}', size_hint=(None, None), size=(200, 50), pos_hint={'right': 0.89, 'top': 0.97}, font_size=16, color=(0, 0, 0, 1))
+        self.layout.add_widget(username_label)
+
         self.add_widget(self.layout)
 
         # Show mood popup after sign-in
@@ -166,8 +169,9 @@ class HomePage(Screen):
         popup_content.add_widget(Label(text='How are you feeling today?', color=(0, 0, 0, 1)))
 
         # Create a BoxLayout for the emojis
-        emoji_layout = BoxLayout(orientation='horizontal', spacing=10, size_hint=(1, None), height=100)
-        
+        emoji_layout = BoxLayout(orientation='horizontal', spacing=10, size_hint=(None, None), height=100)
+        emoji_layout.bind(minimum_width=emoji_layout.setter('width'))
+
         # Add emoji buttons
         moods = ['happy', 'sad', 'neutral']  # List of moods
         for mood in moods:
@@ -175,15 +179,19 @@ class HomePage(Screen):
             btn.bind(on_press=self.on_mood_selected)
             btn.mood = mood  # Assign the mood to the button
             emoji_layout.add_widget(btn)
-        
+
         popup_content.add_widget(emoji_layout)
-        
+
         # Create the popup
         self.mood_popup = Popup(title='Mood Check', content=popup_content, size_hint=(0.7, 0.3), auto_dismiss=False,
                                 background='rounded_background.png', background_color=(1, 1, 1, 0.7))
-        
+
+        # Center the emoji layout within the popup
+        emoji_layout.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
+
         # Open the popup
         self.mood_popup.open()
+
     # Function to initialize the database and create the table if it doesn't exist
     def init_db():
         conn = sqlite3.connect('example.db')
